@@ -22,3 +22,9 @@ while True:
 				max_power = max(powers)
 			utl.ez_move("r")
 		utl.ez_move("u")
+	# max_powerが2以下になったら植え直す
+	if powers[max_power] <= 2:
+		utl.move_00()
+		powers = {}
+		powers = utl.plant_and_measure_all(Entities.Sunflower)
+		max_power = max(powers)
