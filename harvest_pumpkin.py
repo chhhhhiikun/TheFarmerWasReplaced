@@ -28,3 +28,5 @@ while True:
 	harvest()
 	utl.move_00()
 	utl.plant_all(Entities.Pumpkin)
+ 
+# 一周 16 * 16で 約53秒
