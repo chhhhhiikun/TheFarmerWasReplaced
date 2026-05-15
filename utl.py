@@ -43,6 +43,22 @@ def till_plant_and_measure_all(entity):
 		ez_move("u")
 	return number_dict
 
+# ひまわり用 powerを図りながら植え直す
+def plant_and_measure_all(entity):
+	number_dict = {}
+	for i in range (get_world_size()):
+		for i in range (get_world_size()):
+			harvest()
+			plant(entity)
+			measure_number = measure()
+			if measure_number in number_dict:
+				number_dict[measure_number] += 1
+			else:
+				number_dict[measure_number] = 1
+			ez_move("r")
+		ez_move("u")
+	return number_dict
+
 # 収穫可能なときに収穫して entity に指定したものを植える（これを使うならv2でいい）
 def harvest_plant_and_move(entity):
 	if can_harvest():
@@ -75,3 +91,19 @@ def move_00():
 		ez_move("l")
 	for i in range(p[1]):
 		ez_move("d")
+  
+# pos (x, y)に移動する
+def move_xy(x, y):
+	p = [get_pos_x(), get_pos_y()]
+	if p[0] < x:
+		for i in range(x - p[0]):
+			ez_move("r")
+	elif p[0] > x:
+		for i in range(p[0] - x):
+			ez_move("l")
+	if p[1] < y:
+		for i in range(y - p[1]):
+			ez_move("u")
+	elif p[1] > y:
+		for i in range(p[1] - y):
+			ez_move("d")
