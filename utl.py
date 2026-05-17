@@ -86,11 +86,21 @@ def is_even(n):
 
 # pos(0, 0) に移動する
 def move_00():
-	p = [get_pos_x(), get_pos_y()]
-	for i in range(p[0]):
-		ez_move("l")
-	for i in range(p[1]):
-		ez_move("d")
+	now_x = get_pos_x()
+	now_y = get_pos_y()
+	if now_x <= get_world_size() // 2:
+		for i in range(now_x):
+			ez_move("l")
+	else:
+		for i in range(get_world_size() - now_x):
+			ez_move("r")
+	if now_y <= get_world_size() // 2:
+		for i in range(now_y):
+			ez_move("d")
+	else:
+		for i in range(get_world_size() - now_y):
+			ez_move("u")
+	
   
 # pos (x, y)に移動する
 def move_xy(x, y):
